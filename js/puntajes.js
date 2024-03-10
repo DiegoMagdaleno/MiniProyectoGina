@@ -2,8 +2,8 @@ function main() {
     const puntajesTable = document.getElementById('puntajesTable');
     const puntajes = JSON.parse(localStorage.getItem('puntajes'));
     if (puntajes) {
-        puntajes.splice(5);
-        puntajes.sort((a, b) => b.puntaje - a.puntaje);
+        puntajes.sort((a, b) => b.tiempo - a.tiempo);
+        
         puntajes.forEach((puntaje) => {
             const tr = document.createElement('tr');
             const tdNombre = document.createElement('td');
