@@ -6,10 +6,16 @@
     <title>Document</title>
     <script src="js/util.js"></script>
     <script src="js/juego.js" defer></script>
+    <link rel="stylesheet" href="css/buttons.css">
+    <script src="js/libs/howler.min.js"></script>
+    <script src="js/audio_juego.js" defer></script>
     <link rel="stylesheet" href="css/juego.css">
 </head>
 <body>
     <div id="barraSuperior">
+        <p>Tiempo: <span id="tiempo"></span></p>
+        <button id="sonidoBtn" class="button blue rounded">Musica</button>
+        <button id="volverBtn" class="button pink rounded">Regresar</button>
     </div>
     <div id="artistas"></div>
     <div id="canciones"></div>
