@@ -3,7 +3,14 @@ function main() {
     const puntajes = JSON.parse(localStorage.getItem('puntajes'));
     if (puntajes) {
         puntajes.sort((a, b) => a.tiempo - b.tiempo);
-        
+
+        for (let i = 0; i < puntajes.length; i++) {
+            if (puntajes[i].puntaje === 0) {
+                puntajes.splice(i, 1);
+                i--;
+            }
+        }
+
         puntajes.forEach((puntaje) => {
             const tr = document.createElement('tr');
             const tdNombre = document.createElement('td');

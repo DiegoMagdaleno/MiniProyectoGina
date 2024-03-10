@@ -3,7 +3,6 @@ function main() {
     const nombreJugador = document.getElementById('nombreJugador');
     nombreJugador.textContent = state.nombre;
 
-    // Find the user in the puntajes array, and update the puntajes array
     const puntajes = JSON.parse(localStorage.getItem('puntajes'));
     let index = -1;
     for (let i = 0; i < puntajes.length; i++) {
@@ -28,7 +27,7 @@ function main() {
     const repetirBtn = document.getElementById('repetirBtn');
     repetirBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        clearStatePartial();
+        resetStatePartial();
         window.location.href = irAPaginaHTMLRelativoAURLPrimaria('juego');
     });
 
