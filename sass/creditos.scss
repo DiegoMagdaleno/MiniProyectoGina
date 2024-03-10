@@ -1,0 +1,32 @@
+body {
+    background: #9b3158 url('../assets/img/pattern.png') ;
+    background-size: cover;
+    font-family: "Madimi One", sans-serif;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    main {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        align-items: center;
+        background-color: rgb(111, 107, 146);
+        background-image: url("https://www.transparenttextures.com/patterns/billie-holiday.png");
+        padding: 20px;
+        border-radius: 8px;
+        width: 30%;
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+
+        .right {
+            align-self: flex-end;
+        }
+
+        .left {
+            align-self: flex-start;
+        }
+    }
+}

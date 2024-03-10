@@ -1,0 +1,50 @@
+body {
+    background: #9b3158 url('../assets/img/pattern.png') ;
+    background-size: cover;
+    font-family: "Madimi One", sans-serif;
+    margin: 0px;
+    padding: 0px;
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+
+
+        .portada {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+
+            h1 {
+                font-size: 5rem;
+                margin: 0px;
+                color: white;
+            }
+
+            h2 {
+                font-size: 2rem;
+                color: white;
+            }
+
+            p {
+                font-size: 2rem;
+                color: white;
+            }
+        }
+
+        .barraAcciones {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            margin-top: 20px;
+            padding: 30px;
+            width: 30%;
+        }
+    }
+}

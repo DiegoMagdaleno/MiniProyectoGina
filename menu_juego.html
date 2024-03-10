@@ -1,21 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="js/state.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Madimi+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/buttons.css">
     <script src="js/util.js"></script>
     <script src="js/menu_juego.js"></script>
+    <link rel="stylesheet" href="css/menu_juego.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
+
 <body>
-    <h1>Ingresa tu nombre aqui</h1>
-    <form>
-        <input type="text" name="nombreInput" id="nombreInput">
-        <input type="button" value="Ingresar" id="ingresarBtn">
-        <div>
-            <span id="mensajeError" style="color: red;"></span>
+    <div class="content-wrapper">
+        <div data-aos="fade-up" data-aos-duration="1000" class="content">
+            <h1>Buenas amiguito!</h1>
+            <div class="txt">
+                <bp>Sabemos que eres un amante de la musica tanto como nosotros. </bp>
+                Necesitamos tu nombre para poder conocerte
+                mejor.
+            </div>
+            <form id="form">
+                <div class="actions">
+                    <button class="button rounded blue glossy" data-icon="←" id="regresarBtn"></button>
+                    <input type="text" name="nombreInput" id="nombreInput" placeholder="Yo me llamo...">
+                    <button value="Ingresar" data-icon="→" id="ingresarBtn"
+                        class="button rounded orange glossy">Jugar</button>
+                </div>
+                <div>
+                    <span id="mensajeError" style="color: red;"></span>
+                </div>
+            </form>
         </div>
-    </form>
-    <button id="borrarBtn">Borrar</button> 
+    </div>
+
+    <div id="modal" class="modal" data-aos="fade-up">
+        <div class="modal-content" id="modalContent">
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
+
 </html>

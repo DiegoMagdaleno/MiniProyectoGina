@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="js/util.js"></script>
     <script src="js/index.js" defer></script>
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Madimi+One&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
+        integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
-    <h1>Hola bienvenido a RetoNico</h1>
-    <p>Coloca el artistita correcto en su respectica cancion</p>
-    <button id="jugarBtn">Ir al juego!</button>  
-    <button id="instruccionesBtn">Instrucciones</button>
-    <button id="creditosBtn">Creditos</button>
+    <main>
+        <div class="portada" data-aos="fade-up" data-aos-duration="1000">
+            <h1 data-aos="fade-down" data-aos-duration="800">Hola!</h1>
+            <h2>Bienvenido a RetoNico</h2>
+            <p data-aos="fade-up" data-aos-delay="200">Coloca el artistita correcto en su respectica cancion</p>
+        </div>
+
+        <div class="barraAcciones" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+            <button id="jugarBtn" class="button orange glossy">Ir al juego!</button>
+            <button id="instruccionesBtn" class="button  glossy">Instrucciones</button>
+            <button id="puntajesBtn" class="button  glossy">Puntuaciones</button>
+            <button id="creditosBtn" class="button glossy">Creditos</button>
+        </div>
+    </main>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
 </body>
 
 </html>

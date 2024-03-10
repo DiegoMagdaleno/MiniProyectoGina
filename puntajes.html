@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Madimi+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/puntajes.css">
+    <script src="js/util.js"></script>
+    <script src="js/puntajes.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/buttons.css">
+</head>
+
+<body>
+    <div class="tablero-wrap" data-aos="fade-down-right">
+        <div class="tablero" data-aos="flip-right">
+            <h1>Los mejores puntajes</h1>
+            <table id="puntajesTable">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Puntaje</th>
+                    <th>Tiempo</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="actions">
+            <button id="volverBtn" class="button orange skew">Volver</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
