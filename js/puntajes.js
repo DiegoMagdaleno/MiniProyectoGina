@@ -7,14 +7,14 @@ function main() {
         puntajes.forEach((puntaje) => {
             const tr = document.createElement('tr');
             const tdNombre = document.createElement('td');
-            const tdPuntaje = document.createElement('td');
             const tdTiempo = document.createElement('td');
+            const tdPuntaje = document.createElement('td');
             tdNombre.textContent = puntaje.nombre;
-            tdPuntaje.textContent = puntaje.puntaje;
             tdTiempo.textContent = puntaje.tiempo;
+            tdPuntaje.textContent = puntaje.puntaje;
             tr.appendChild(tdNombre);
-            tr.appendChild(tdPuntaje);
             tr.appendChild(tdTiempo);
+            tr.appendChild(tdPuntaje);
             puntajesTable.appendChild(tr);
         });
     }
