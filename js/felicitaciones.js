@@ -38,6 +38,14 @@ function main() {
         window.location.href = irAPaginaHTMLRelativoAURLPrimaria('index');
     });
 
+    const puntaje = document.getElementById('puntajeNumero');
+    puntaje.textContent = state.puntaje + ' puntos';
+
+    const tiempo = document.getElementById('tiempoNumero');
+    const minutos = Math.floor(state.tiempo / 60);
+    const segundos = state.tiempo % 60;
+    tiempo.textContent = `${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+
 
 }
 
