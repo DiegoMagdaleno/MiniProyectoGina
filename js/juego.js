@@ -2,10 +2,45 @@ function main() {
     const artistasDatos = [
         {
             nombre: "Taylor Swift",
-            imagen: "taylor_swift.jpg",
-
+            imagen: "assets/img/taylor_swift.png"
+        },
+        {
+            nombre: "Ed Sheeran",
+            imagen: "assets/img/ed_sheeran.png"
+        },
+        {
+            nombre: "Olivia Rodrigo",
+            imagen: "assets/img/olivia_rodrigo.png"
+        },
+        {
+            nombre: "Imagine Dragons",
+            imagen: "assets/img/imagine_dragons.png"
+        },
+        {
+            nombre: "Justin Bieber",
+            imagen: "assets/img/justin_bieber.png"
+        },
+        {
+            nombre: "Shawn Mendes",
+            imagen: "assets/img/shawn_mendes.jpg"
+        },
+        {
+            nombre: "Billie Eilish",
+            imagen: "assets/img/billie_eilish.png"
+        },
+        {
+            nombre: "Katy Perry",
+            imagen: "assets/img/katy_perry.png"
+        },
+        {
+            nombre: "Dua Lipa",
+            imagen: "assets/img/dua_lipa.png"
+        },
+        {
+            nombre: "The Chainsmokers",
+            imagen: "assets/img/the_chainsmokers.png"
         }
-    ]
+    ];
 
     const cancionesDatos = [
         {
@@ -13,17 +48,108 @@ function main() {
             artista: "Taylor Swift",
             imagen: "blank_space.jpg",
             audio: "blank_space.mp3"
+        },
+        {
+            nombre: "Shape of You",
+            artista: "Ed Sheeran",
+            imagen: "shape_of_you.jpg",
+            audio: "shape_of_you.mp3"
+        },
+        {
+            nombre: "drivers license",
+            artista: "Olivia Rodrigo",
+            imagen: "drivers_license.jpg",
+            audio: "drivers_license.mp3"
+        },
+        {
+            nombre: "Believer",
+            artista: "Imagine Dragons",
+            imagen: "believer.jpg",
+            audio: "believer.mp3"
+        },
+        {
+            nombre: "Baby",
+            artista: "Justin Bieber",
+            imagen: "baby.jpg",
+            audio: "baby.mp3"
+        },
+        {
+            nombre: "There's Nothing Holdin' Me Back",
+            artista: "Shawn Mendes",
+            imagen: "theres_nothing_holdin_me_back.jpg",
+            audio: "theres_nothing_holdin_me_back.mp3"
+        },
+        {
+            nombre: "Bad Guy",
+            artista: "Billie Eilish",
+            imagen: "bad_guy.jpg",
+            audio: "bad_guy.mp3"
+        },
+        {
+            nombre: "Roar",
+            artista: "Katy Perry",
+            imagen: "roar.jpg",
+            audio: "roar.mp3"
+        },
+        {
+            nombre: "New Rules",
+            artista: "Dua Lipa",
+            imagen: "new_rules.jpg",
+            audio: "new_rules.mp3"
+        },
+        {
+            nombre: "Closer",
+            artista: "The Chainsmokers",
+            imagen: "closer.jpg",
+            audio: "closer.mp3"
         }
-    ]
+    ];
 
     const artistasDiv = document.getElementById('artistas');
     const cancionesDiv = document.getElementById('canciones');
 
-
     // Paso 1: Mostrar artistas de manera controlada
     // Gina quiere que, de los 10 artistas disponibles, solo se muestren 3 en la pantalla inicial.
     // Una vez se han mostrado los primeros 3 artistas, se deben mostrar los siguientes 3 artistas cuando se complete esta etapa.
-    // El como ocultar y mostrar, ya se ha hecho en una tarea de Gina, la de canvas.
+
+    //Funcion para obtener un indice aleatorio
+    function getRandomIndex(max, excluido = -1){
+        let index = Math.floor(Math.random() * max);
+        while (index === excluido){
+            index = Math.floor(Math.random() * max);
+        }
+        return index;
+    }
+
+    //Funcion para mostrar los artistas
+    function mostrarArtistas(artistas, cantidad, artistasExcluidos) {
+        const artistasMostrados = [];
+        while (artistasMostrados.length < cantidad) {
+            let indice = getRandomIndex(artistas.length);
+            // Verificar que el índice no esté en los artistas excluidos
+            while (artistasExcluidos.includes(indice)) {
+                indice = getRandomIndex(artistas.length);
+            }
+            artistasMostrados.push(indice);
+            artistasExcluidos.push(indice);
+            const artista = artistas[indice];
+            const elemento = document.createElement('div');
+            elemento.innerHTML = `<img src="${artista.imagen}" alt="${artista.nombre}">`;
+            artistasDiv.appendChild(elemento);
+        }
+    }    
+
+    //Mostrar 3 artistas aleatorios
+    const artistasExcluidos = [];
+    mostrarArtistas(artistasDatos, 3, artistasExcluidos);
+
+    //Mostrar artistas despues de un tiempo (esta funcion es temporal xd)
+    setTimeout(function(){
+        artistasDiv.innerHTML = '';
+        mostrarArtistas(artistasDatos, 3, artistasExcluidos);
+    }, 5000);
+
+
 
     // Paso 2: Redirección a la pantalla de felicitaciones
     // Una vez completados los 6 artistas, Gina desea redirigir al usuario a la pantalla de felicitaciones.
