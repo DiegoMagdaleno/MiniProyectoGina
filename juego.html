@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Madimi+One&display=swap" rel="stylesheet">
     <script src="js/util.js"></script>
     <script src="js/juego.js" defer></script>
     <link rel="stylesheet" href="css/buttons.css">
@@ -11,13 +15,18 @@
     <script src="js/audio_juego.js" defer></script>
     <link rel="stylesheet" href="css/juego.css">
 </head>
+
 <body>
     <div id="barraSuperior">
         <p>Tiempo: <span id="tiempo"></span></p>
-        <button id="sonidoBtn" class="button blue rounded">Musica</button>
-        <button id="volverBtn" class="button pink rounded">Regresar</button>
+        <p>Puntaje: <span id="puntaje"></span></p>
+        <div>
+            <button id="sonidoBtn" class="button blue rounded">Musica</button>
+            <button id="volverBtn" class="button pink rounded">Regresar</button>
+        </div>
     </div>
     <div id="artistas"></div>
     <div id="canciones"></div>
 </body>
+
 </html>

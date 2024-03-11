@@ -1,15 +1,63 @@
-#artistas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 100px;
+body {
+  background: #9b3158 url("../assets/img/pattern.png");
+  background-size: cover;
+  font-family: "Madimi One", sans-serif;
+  margin: 0px;
+  padding: 0px;
 }
-
-#canciones {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 100px;
+body #barraSuperior {
+  display: flex;
+  justify-content: space-between;
+  background-color: #9b3158;
+  padding: 20px;
 }
+body #barraSuperior p {
+  font-size: 2rem;
+  color: white;
+}
+body #artistas {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+body #artistas div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+body #artistas div p {
+  font-family: "Madimi One", sans-serif;
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+  padding: 20px;
+}
+body #artistas img {
+  width: 500px;
+  height: 500px;
+  margin: 10px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+  background-color: #9b3158;
+}
+body #canciones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 200px;
+  margin-right: 100px;
+  margin-left: 100px;
+}
+body #canciones img {
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+}
+body #canciones p {
+  font-family: "Madimi One", sans-serif;
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+}/*# sourceMappingURL=juego.css.map */
