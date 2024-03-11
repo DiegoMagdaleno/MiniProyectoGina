@@ -57,61 +57,61 @@ function main() {
             nombre: "Blank Space",
             artista: "Taylor Swift",
             imagen: "assets/img/blank_space.jpg",
-            audio: "blank_space.mp3",
+            audio: "assets/audio/blank_space.mp3",
         },
         {
             nombre: "Shape of You",
             artista: "Ed Sheeran",
             imagen: "assets/img/shape_of_you.png",
-            audio: "shape_of_you.mp3",
+            audio: "assets/audio/shape.mp3",
         },
         {
             nombre: "drivers license",
             artista: "Olivia Rodrigo",
             imagen: "assets/img/drivers_license.jpg",
-            audio: "drivers_license.mp3",
+            audio: "assets/audio/drivers_license.mp3",
         },
         {
             nombre: "Believer",
             artista: "Imagine Dragons",
             imagen: "assets/img/believer.jpg",
-            audio: "believer.mp3",
+            audio: "assets/audio/believer.mp3",
         },
         {
             nombre: "Baby",
             artista: "Justin Bieber",
             imagen: "assets/img/baby.jpg",
-            audio: "baby.mp3",
+            audio: "assets/audio/baby.mp3",
         },
         {
             nombre: "There's Nothing Holdin' Me Back",
             artista: "Shawn Mendes",
             imagen: "assets/img/theres_nothing_holdin_me_back.jpg",
-            audio: "theres_nothing_holdin_me_back.mp3",
+            audio: "assets/audio/nothing_holding_back.mp3",
         },
         {
             nombre: "Bad Guy",
             artista: "Billie Eilish",
             imagen: "assets/img/bad_guy.jpg",
-            audio: "bad_guy.mp3",
+            audio: "assets/audio/bad.mp3",
         },
         {
             nombre: "Roar",
             artista: "Katy Perry",
             imagen: "assets/img/roar.jpg",
-            audio: "roar.mp3",
+            audio: "assets/audio/roar.mp3",
         },
         {
             nombre: "New Rules",
             artista: "Dua Lipa",
             imagen: "assets/img/new_rules.jpg",
-            audio: "new_rules.mp3",
+            audio: "assets/audio/new_rules.mp3",
         },
         {
             nombre: "Closer",
             artista: "The Chainsmokers",
             imagen: "assets/img/closer.jpg",
-            audio: "closer.mp3",
+            audio: "assets/audio/closer.mp3",
         },
     ];
 
@@ -288,7 +288,16 @@ function main() {
         let voiceSound = new Howl({
             src: [artistasDatos.find((artista) => artista.nombre === targetArtistName).voz],
         });
-        voiceSound.play();
+
+        let songClip = new Howl({
+            src: [cancionesDatos.find((cancion) => cancion.artista === targetArtistName).audio],
+            volume: 0.3,
+            
+            onend: () => {
+                voiceSound.play();
+            }
+        });
+        songClip.play();
         score++;
         artistasColocados
 
