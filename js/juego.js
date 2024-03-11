@@ -22,7 +22,7 @@ function main() {
         },
         {
             nombre: "Shawn Mendes",
-            imagen: "assets/img/shawn_mendes.jpg"
+            imagen: "assets/img/shawn_mendes.png"
         },
         {
             nombre: "Billie Eilish",
@@ -46,61 +46,61 @@ function main() {
         {
             nombre: "Blank Space",
             artista: "Taylor Swift",
-            imagen: "blank_space.jpg",
+            imagen: "assets/img/blank_space.jpg",
             audio: "blank_space.mp3"
         },
         {
             nombre: "Shape of You",
             artista: "Ed Sheeran",
-            imagen: "shape_of_you.jpg",
+            imagen: "assets/img/shape_of_you.png",
             audio: "shape_of_you.mp3"
         },
         {
             nombre: "drivers license",
             artista: "Olivia Rodrigo",
-            imagen: "drivers_license.jpg",
+            imagen: "assets/img/drivers_license.jpg",
             audio: "drivers_license.mp3"
         },
         {
             nombre: "Believer",
             artista: "Imagine Dragons",
-            imagen: "believer.jpg",
+            imagen: "assets/img/believer.jpg",
             audio: "believer.mp3"
         },
         {
             nombre: "Baby",
             artista: "Justin Bieber",
-            imagen: "baby.jpg",
+            imagen: "assets/img/baby.jpg",
             audio: "baby.mp3"
         },
         {
             nombre: "There's Nothing Holdin' Me Back",
             artista: "Shawn Mendes",
-            imagen: "theres_nothing_holdin_me_back.jpg",
+            imagen: "assets/img/theres_nothing_holdin_me_back.jpg",
             audio: "theres_nothing_holdin_me_back.mp3"
         },
         {
             nombre: "Bad Guy",
             artista: "Billie Eilish",
-            imagen: "bad_guy.jpg",
+            imagen: "assets/img/bad_guy.jpg",
             audio: "bad_guy.mp3"
         },
         {
             nombre: "Roar",
             artista: "Katy Perry",
-            imagen: "roar.jpg",
+            imagen: "assets/img/roar.jpg",
             audio: "roar.mp3"
         },
         {
             nombre: "New Rules",
             artista: "Dua Lipa",
-            imagen: "new_rules.jpg",
+            imagen: "assets/img/new_rules.jpg",
             audio: "new_rules.mp3"
         },
         {
             nombre: "Closer",
             artista: "The Chainsmokers",
-            imagen: "closer.jpg",
+            imagen: "assets/img/closer.jpg",
             audio: "closer.mp3"
         }
     ];
@@ -122,8 +122,9 @@ function main() {
     }
 
     //Funcion para mostrar los artistas
-    function mostrarArtistas(artistas, cantidad, artistasExcluidos) {
+    function mostrarArtistasAleatoriosExcluyendo(artistas, cantidad, artistasExcluidos) {
         const artistasMostrados = [];
+        const cancionesMostradas = []; // Para hacer un seguimiento de las canciones mostradas
         while (artistasMostrados.length < cantidad) {
             let indice = getRandomIndex(artistas.length);
             // Verificar que el índice no esté en los artistas excluidos
@@ -134,90 +135,43 @@ function main() {
             artistasExcluidos.push(indice);
             const artista = artistas[indice];
             const elemento = document.createElement('div');
-            elemento.innerHTML = `<img src="${artista.imagen}" alt="${artista.nombre}">`;
+            elemento.innerHTML = `
+                <img src="${artista.imagen}" alt="${artista.nombre}">
+                <p>${artista.nombre}</p>`;
             artistasDiv.appendChild(elemento);
+
+            // Mostrar canciones correspondientes al artista
+            const cancionesArtista = cancionesDatos.filter(cancion => cancion.artista === artista.nombre);
+            cancionesArtista.forEach(cancion => {
+                const cancionElemento = document.createElement('div');
+                cancionElemento.innerHTML = `
+                    <img src="${cancion.imagen}" alt="${cancion.nombre}">
+                    <p>${cancion.nombre}</p>
+                `;
+                cancionesDiv.appendChild(cancionElemento);
+                cancionesMostradas.push(cancionElemento); // Guardar la referencia del elemento de la canción mostrada
+            });
         }
-    }    
+        // Devolver la referencia de las canciones mostradas
+        return cancionesMostradas;
+    }
 
-    //Mostrar 3 artistas aleatorios
+    // Paso 1: Mostrar 3 artistas aleatorios y sus respectivas canciones
     const artistasExcluidos = [];
-    mostrarArtistas(artistasDatos, 3, artistasExcluidos);
+    const cancionesMostradasPrimerPaso = mostrarArtistasAleatoriosExcluyendo(artistasDatos, 3, artistasExcluidos);
 
-    //Mostrar artistas despues de un tiempo (esta funcion es temporal xd)
-    setTimeout(function(){
+    // Paso 2: Mostrar otras 3 artistas aleatorios después de un tiempo
+    setTimeout(function() {
+        // Limpiar los artistas y sus canciones mostradas en el primer paso
         artistasDiv.innerHTML = '';
-        mostrarArtistas(artistasDatos, 3, artistasExcluidos);
-    }, 5000);
+        cancionesMostradasPrimerPaso.forEach(cancionElemento => {
+            cancionesDiv.removeChild(cancionElemento);
+        });
 
-
-
-    // Paso 2: Redirección a la pantalla de felicitaciones
-    // Una vez completados los 6 artistas, Gina desea redirigir al usuario a la pantalla de felicitaciones.
-
-    // Paso 3: Utilización de la variable de puntos
-    // La variable de puntos indica el progreso del usuario. Por ejemplo, si hay 6 puntos, se han completado los 6 artistas.
-    // Si hay 3 puntos, significa que se deben mostrar los siguientes 3 artistas.
-
-    // Paso 4: Implementación de la lógica en el evento 'ondrop'
-    // En el evento 'ondrop' de los artistas, debemos verificar el valor de la variable de puntos.
-    // Si la variable es 3, debemos ocultar los primeros 3 artistas y mostrar los siguientes 3.
-    // Si la variable es 6, debemos redirigir al usuario a la pantalla de felicitaciones.
-
-    // Paso 5: Redirección entre pantallas
-    // Para redirigir entre pantallas, podemos consultar el archivo 'menu_juego.js', donde se encuentra el código para redirigir a la pantalla de juego.
-
-    // Paso 6: Barajar elementos de un array
-    // Si necesitamos barajar los artistas, podemos aprender cómo hacerlo en este enlace: https://stackoverflow.com/questions/44103793/how-does-this-w3schools-code-for-shuffling-an-array-with-sort-work
-    let puntos = 0;
-
-
-    // Vamos a analizar paso a paso lo que queremos lograr en nuestro código.
-
-    // Paso 1: Dividir la interfaz en secciones
-    // Tenemos dos divisiones (divs) en nuestra interfaz: una para los artistas y otra para las canciones.
-
-    // Paso 2: Organización de los datos
-    // Todos nuestros datos están organizados como objetos, lo que facilita su manejo y manipulación.
-
-    // Paso 3: Creación de los elementos HTML dinámicamente
-    // Para representar visualmente nuestros datos, necesitamos crear elementos HTML dinámicamente.
-    // Utilizaremos un bucle 'for' para recorrer nuestros objetos y generar los elementos necesarios dentro de los divs correspondientes.
-    // Tambien es posible usar el metodo 'forEach' para recorrer los objetos.
-    // Puedes aprender más sobre cómo manipular elementos HTML con JavaScript en este enlace: https://www.w3schools.com/js/js_htmldom_nodes.asp
-
-    // Paso 4: Hacer los elementos arrastrables
-    // Es importante que los elementos de la sección de canciones sean arrastrables.
-    // Para lograrlo, debemos agregar la propiedad 'draggable' a estos elementos.
-    // Puedes encontrar más información sobre cómo implementar la funcionalidad de arrastrar y soltar en este enlace: https://www.w3schools.com/html/html5_draganddrop.asp
-    // También te recomiendo ver los siguientes tutoriales en YouTube:
-    // 1. https://www.youtube.com/watch?v=UAkCVwhzaG4
-    // 2. https://www.youtube.com/watch?v=wP-yu5cDtNc
-
-    // Paso 5: Entender la transferencia de datos
-    // Durante la interacción de arrastrar y soltar, es fundamental comprender cómo se transfieren los datos entre los elementos.
-    // Este concepto se conoce como "data transfer" y es esencial para nuestra aplicación.
-    // Puedes aprender más sobre esto en este enlace: https://www.w3schools.com/html/html5_draganddrop.asp
-    // o viendo los videos de YouTube que te recomendé en el paso 4.
-
-    // Paso 6: Verificación de la corrección del artista
-    // Un desafío clave en nuestra aplicación es determinar si el artista seleccionado es el correcto o no.
-    // Para abordar esto, agregaremos datos a los divs que representan a los artistas.
-    // Puedes aprender cómo hacerlo en este enlace: https://www.w3schools.com/tags/att_data-.asp
-    // Luego, en el evento 'ondrop', comprobaremos si el artista seleccionado es el correcto comparando los datos.
-
-    // Paso 7: Implementación del código
-    // Aquí te dejo un ejemplo de cómo podríamos hacer la verificación del artista:
-
-    // div.ondrop = function (event) {
-    // event.preventDefault();
-    // const artistaArrastrado = event.dataTransfer.getData('artista');
-    // if (artistaArrastrado === div.dataset.artista) {
-    // alert('¡Correcto!');
-    // } else {
-    // alert('¡Incorrecto!');
-    // }
-    // };
-    // A programar!
+        // Mostrar nuevos artistas y sus respectivas canciones
+        const nuevosArtistasExcluidos = [];
+        mostrarArtistasAleatoriosExcluyendo(artistasDatos, 3, nuevosArtistasExcluidos);
+    }, 5000); // Esperar 5 segundos después de mostrar los primeros artistas
 }
 
 window.onload = main;
