@@ -332,7 +332,7 @@ function main() {
             volume: 0.3,
             
             onend: () => {
-                saltarBoton.hidden = true;
+                saltarBoton.style.visibility = 'hidden';
                 voiceSound.play();
 
                 if (score === 3) {
@@ -364,7 +364,7 @@ function main() {
         songClip.play();
         score++;
         currentSong = songClip;
-        saltarBoton.hidden = false;
+        saltarBoton.style.visibility = 'visible';
     }
 
     const {
