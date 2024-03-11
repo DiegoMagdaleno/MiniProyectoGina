@@ -10,6 +10,25 @@
     <script src="js/libs/howler.min.js"></script>
     <script src="js/audio_juego.js" defer></script>
     <link rel="stylesheet" href="css/juego.css">
+    <style>
+        .contenedor {
+    display: flex;
+}
+
+.contenedor-artistas,
+.contenedor-canciones {
+    display: flex;
+    flex-direction: row;
+}
+
+.contenedor-artistas img,
+.contenedor-canciones img {
+    width: 150px; /* Establece el tamaño deseado */
+    height: auto; /* Esto mantendrá la proporción de la imagen */
+    margin: 10px; /* Añade margen entre las imágenes */
+}
+
+    </style>
 </head>
 <body>
     <div id="barraSuperior">
@@ -17,7 +36,10 @@
         <button id="sonidoBtn" class="button blue rounded">Musica</button>
         <button id="volverBtn" class="button pink rounded">Regresar</button>
     </div>
-    <div id="artistas"></div>
-    <div id="canciones"></div>
+    <div class="contenedor">
+        <div id="artistas" class="contenedor-artistas"></div>
+        <div id="canciones" class="contenedor-canciones"></div>
+    </div>
+    
 </body>
 </html>
