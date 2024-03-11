@@ -1,4 +1,3 @@
-//-----------Var Inits--------------
 canvas = document.getElementById("confetti");
 ctx = canvas.getContext("2d");
 
@@ -6,7 +5,6 @@ canvas.style.margin = 0;
 canvas.style.padding = 0;
 canvas.style.position = 'absolute';
 
-// get parent
 let parent = canvas.parentNode;
 canvas.width = parent.offsetWidth;
 canvas.height = parent.offsetHeight;
@@ -57,7 +55,6 @@ initConfetti = () => {
     }
 }
 
-//---------Render-----------
 render = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -65,38 +62,29 @@ render = () => {
         let width = (confetto.dimensions.x * confetto.scale.x);
         let height = (confetto.dimensions.y * confetto.scale.y);
 
-        // Move canvas to position and rotate
         ctx.translate(confetto.position.x, confetto.position.y);
         ctx.rotate(confetto.rotation);
 
-        // Apply forces to velocity
         confetto.velocity.x -= confetto.velocity.x * drag;
         confetto.velocity.y = Math.min(confetto.velocity.y + gravity, terminalVelocity);
         confetto.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
 
-        // Set position
         confetto.position.x += confetto.velocity.x;
         confetto.position.y += confetto.velocity.y;
 
-        // Delete confetti when out of frame
         if (confetto.position.y >= canvas.height) confetti.splice(index, 1);
 
-        // Loop confetto x position
         if (confetto.position.x > canvas.width) confetto.position.x = 0;
         if (confetto.position.x < 0) confetto.position.x = canvas.width;
 
-        // Spin confetto by scaling y
         confetto.scale.y = Math.cos(confetto.position.y * 0.1);
         ctx.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back;
 
-        // Draw confetto
         ctx.fillRect(-width / 2, -height / 2, width, height);
 
-        // Reset transform matrix
         ctx.setTransform(1, 0, 0, 1, 0, 0);
     });
 
-    // Fire off another round of confetti
     if (confetti.length <= 10) initConfetti();
 
     window.requestAnimationFrame(render);
