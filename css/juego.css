@@ -34,8 +34,8 @@ body #artistas div p {
   padding: 20px;
 }
 body #artistas img {
-  width: 500px;
-  height: 500px;
+  width: 250px;
+  height: 250px;
   margin: 10px;
   border-radius: 50%;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
@@ -44,13 +44,13 @@ body #artistas img {
 body #canciones {
   display: flex;
   justify-content: space-between;
-  margin-top: 200px;
+  margin-top: 50px;
   margin-right: 100px;
   margin-left: 100px;
 }
 body #canciones img {
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   margin: 10px;
   border-radius: 8px;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);

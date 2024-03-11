@@ -3,42 +3,52 @@ function main() {
         {
             nombre: "Taylor Swift",
             imagen: "assets/img/taylor_swift.png",
+            voz: "assets/audio/TaylorSwift_Voice.ogg",
         },
         {
             nombre: "Ed Sheeran",
             imagen: "assets/img/ed_sheeran.png",
+            voz: "assets/audio/EdSheeran_Voice.ogg",
         },
         {
             nombre: "Olivia Rodrigo",
             imagen: "assets/img/olivia_rodrigo.png",
+            voz: "assets/audio/OliviaRodrigo_Voice.ogg",
         },
         {
             nombre: "Imagine Dragons",
             imagen: "assets/img/imagine_dragons.png",
+            voz: "assets/audio/ImagineDragons_Voice.ogg",
         },
         {
             nombre: "Justin Bieber",
             imagen: "assets/img/justin_bieber.png",
+            voz: "assets/audio/JustinBieber_Voice.ogg",
         },
         {
             nombre: "Shawn Mendes",
             imagen: "assets/img/shawn_mendes.png",
+            voz: "assets/audio/ShawnMendes_Voice.ogg",
         },
         {
             nombre: "Billie Eilish",
             imagen: "assets/img/billie_eilish.png",
+            voz: "assets/audio/BillieEilish_Voice.ogg",
         },
         {
             nombre: "Katy Perry",
             imagen: "assets/img/katy_perry.png",
+            voz: "assets/audio/KatyPerry_Voice.ogg",
         },
         {
             nombre: "Dua Lipa",
             imagen: "assets/img/dua_lipa.png",
+            voz: "assets/audio/DuaLipa_Voice.ogg",
         },
         {
             nombre: "The Chainsmokers",
             imagen: "assets/img/the_chainsmokers.png",
+            voz: "assets/audio/TheChainsmokers_Voice.ogg",
         },
     ];
 
@@ -265,13 +275,20 @@ function main() {
         const songArtistName = draggedElement.getAttribute("data-song-artist");
 
         if (targetArtistName !== songArtistName) {
-            alert("¡Esa no es la canción correcta para este artista!");
+            let errorSound = new Howl({
+                src: ['../assets/audio/ErrorSFX.mp3'],
+            });
+            errorSound.play();
             return;
         }
 
         draggedElement.parentNode.removeChild(draggedElement);
         event.target.appendChild(draggedElement);
 
+        let voiceSound = new Howl({
+            src: [artistasDatos.find((artista) => artista.nombre === targetArtistName).voz],
+        });
+        voiceSound.play();
         score++;
         artistasColocados
 
@@ -294,6 +311,7 @@ function main() {
 
         if (score === 6) {
             let state = getState();
+            console.log(state);
             state.puntaje = score;
             state.tiempo = time;
             setState(state);
