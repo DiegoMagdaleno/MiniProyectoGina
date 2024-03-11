@@ -51,6 +51,7 @@ function main() {
     const segundos = state.tiempo % 60;
     tiempo.textContent = `${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
 
+    localStorage.setItem('puntajes', JSON.stringify(puntajes));
 
 }
 
