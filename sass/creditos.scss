@@ -7,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 115vh;
 
     main {
         display: flex;
@@ -27,6 +27,10 @@ body {
 
         .left {
             align-self: flex-start;
+        }
+
+        .center{
+            text-align: center;
         }
     }
 }
