@@ -3,10 +3,11 @@ function main() {
     const nombreJugador = document.getElementById('nombreJugador');
     nombreJugador.textContent = state.nombre;
 
-    const puntajes = JSON.parse(localStorage.getItem('puntajes'));
+    let puntajes = JSON.parse(localStorage.getItem('puntajes'));
 
     if (!puntajes) {
         localStorage.setItem('puntajes', JSON.stringify([]));
+        puntajes = [];
     }
 
     let index = -1;

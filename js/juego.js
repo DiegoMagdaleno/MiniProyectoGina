@@ -115,6 +115,9 @@ function main() {
         },
     ];
 
+    let puntos = 1000;
+    let currentSong = null;
+
     const artistasDiv = document.getElementById("artistas");
     const cancionesDiv = document.getElementById("canciones");
     const scoreDisplay = document.getElementById("score-display");
@@ -131,6 +134,13 @@ function main() {
             index = Math.floor(Math.random() * max);
         }
         return index;
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     }
 
     function mostrarArtistasAleatoriosExcluyendo(
@@ -153,8 +163,11 @@ function main() {
                 elemento.setAttribute("data-artist-name", artista.nombre);
                 elemento.id = `artista-${crearIdNombre(artista.nombre)}`;
                 elemento.innerHTML = `
-                        <img src="${artista.imagen}" alt="${artista.nombre}">
-                        <p>${artista.nombre}</p>`;
+                        <div class="img-artist">
+                            <img src="${artista.imagen}" alt="${artista.nombre}">
+                        </div>
+                        <p>${artista.nombre}</p>
+                        `;
                 artistasDiv.appendChild(elemento);
 
                 // Mostrar canciones correspondientes al artista
@@ -180,6 +193,7 @@ function main() {
 
     function dragStart(event) {
         const target = event.target.closest("div");
+        console.log(target);
 
         event.dataTransfer.setData("text/plain", target.id);
     }
@@ -267,23 +281,47 @@ function main() {
     let score = 0;
 
     function drop(event) {
+        event.stopPropagation();
         event.preventDefault();
         const data = event.dataTransfer.getData("text/plain");
+        console.log(data);
         const draggedElement = document.getElementById(data);
 
-        const targetArtistName = this.getAttribute("data-artist-name");
+        let parent = this.parentNode;
+
+        const targetArtistName = parent.getAttribute("data-artist-name");
         const songArtistName = draggedElement.getAttribute("data-song-artist");
 
         if (targetArtistName !== songArtistName) {
             let errorSound = new Howl({
                 src: ['../assets/audio/ErrorSFX.mp3'],
             });
+            let puntajeSpan = document.getElementById('puntaje');
+            puntos -= 100;
+            puntajeSpan.innerText = puntos;
             errorSound.play();
             return;
         }
 
         draggedElement.parentNode.removeChild(draggedElement);
+        const songImage = draggedElement.querySelector("img");
+        const innerDiv = parent.querySelector("div");
+        innerDiv.appendChild(songImage);
+        songImage.style.width = '10%';
+        songImage.style.height = '10%';
+        songImage.style.position = 'absolute';
+
+        puntos += 100;
+        let puntajeSpan = document.getElementById('puntaje');
+        puntajeSpan.innerText = puntos;
+        
         event.target.appendChild(draggedElement);
+        let saltarBoton = document.getElementById('saltarBtn');
+
+        saltarBoton.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentSong.seek(currentSong.duration());
+        });
 
         let voiceSound = new Howl({
             src: [artistasDatos.find((artista) => artista.nombre === targetArtistName).voz],
@@ -294,38 +332,39 @@ function main() {
             volume: 0.3,
             
             onend: () => {
+                saltarBoton.hidden = true;
                 voiceSound.play();
+
+                if (score === 3) {
+                    const artistasExcluidos = Array.from(
+                        artistasDiv.querySelectorAll("div")
+                    ).map((div) => div.getAttribute("data-artist-name"));
+        
+                    artistasDiv.innerHTML = "";
+        
+                    const {
+                        artistasMostrados: nuevosArtistasMostrados,
+                        cancionesMostradas: nuevasCancionesMostradas,
+                    } = mostrarArtistasAleatoriosExcluyendo(artistasDatos, 3, artistasExcluidos);
+        
+                    agregarEventosArrastre();
+                }
+        
+                if (score === 6) {
+                    let state = getState();
+                    console.log(state);
+                    state.puntaje = puntos;
+                    state.tiempo = time;
+                    setState(state);
+                    window.location.href = irAPaginaHTMLRelativoAURLPrimaria('felicitaciones');
+                }
             }
         });
+
         songClip.play();
         score++;
-        artistasColocados
-
-        if (score === 3) {
-            // Excluir los artistas ya mostrados
-            const artistasExcluidos = Array.from(
-                artistasDiv.querySelectorAll("div")
-            ).map((div) => div.getAttribute("data-artist-name"));
-
-            artistasDiv.innerHTML = "";
-
-            // Mostrar los siguientes 3 artistas
-            const {
-                artistasMostrados: nuevosArtistasMostrados,
-                cancionesMostradas: nuevasCancionesMostradas,
-            } = mostrarArtistasAleatoriosExcluyendo(artistasDatos, 3, artistasExcluidos);
-
-            agregarEventosArrastre(); ce
-        }
-
-        if (score === 6) {
-            let state = getState();
-            console.log(state);
-            state.puntaje = score;
-            state.tiempo = time;
-            setState(state);
-            window.location.href = irAPaginaHTMLRelativoAURLPrimaria('felicitaciones');
-        }
+        currentSong = songClip;
+        saltarBoton.hidden = false;
     }
 
     const {
@@ -334,6 +373,8 @@ function main() {
     } = mostrarArtistasAleatoriosExcluyendo(artistasDatos, 3, []);
 
     agregarEventosArrastre();
+
+    document.getElementById('puntaje').innerText = puntos;
 }
 
 window.onload = main;
