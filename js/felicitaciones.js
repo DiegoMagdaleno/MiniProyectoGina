@@ -4,6 +4,11 @@ function main() {
     nombreJugador.textContent = state.nombre;
 
     const puntajes = JSON.parse(localStorage.getItem('puntajes'));
+
+    if (!puntajes) {
+        localStorage.setItem('puntajes', JSON.stringify([]));
+    }
+
     let index = -1;
     for (let i = 0; i < puntajes.length; i++) {
         if (puntajes[i].nombre === state.nombre) {
@@ -46,6 +51,7 @@ function main() {
     const segundos = state.tiempo % 60;
     tiempo.textContent = `${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
 
+    localStorage.setItem('puntajes', JSON.stringify(puntajes));
 
 }
 
