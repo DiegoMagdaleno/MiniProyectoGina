@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 115vh;
 }
 body main {
   display: flex;
@@ -26,4 +26,7 @@ body main .right {
 }
 body main .left {
   align-self: flex-start;
+}
+body main .center {
+  text-align: center;
 }/*# sourceMappingURL=creditos.css.map */
